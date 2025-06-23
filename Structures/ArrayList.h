@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <iostream>
 
 constexpr float GROWTH_FACTOR = 2.0f;
 
@@ -35,7 +36,7 @@ public:
     size_t find(T key) const;
     size_t capacity() const;
     size_t size() const;
-    static void print(const ArrayList<T>& obj);
+    void print();
     void swap(ArrayList<T>& obj1, ArrayList<T>& obj2);
 
     T operator[](size_t index) const;
@@ -327,10 +328,10 @@ inline size_t ArrayList<T>::size() const
 }
 
 template<typename T>
-inline void ArrayList<T>::print(const ArrayList<T>& obj)
+inline void ArrayList<T>::print()
 {
-    for (size_t i = 0; i < obj.m_size; ++i)
-        std::cout << obj.m_array[i] << ' ';
+    for (size_t i = 0; i < m_size; ++i)
+        std::cout << m_array[i] << ' ';
 }
 
 template<typename T>
