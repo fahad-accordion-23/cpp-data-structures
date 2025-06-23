@@ -13,10 +13,10 @@ private:
     size_t m_size;
 
 public:
-    ArrayList();							    // Default ctor
-    ArrayList(const ArrayList<T>& copy);		// Copy
-    ArrayList<T>& operator=(ArrayList<T> obj);	// Copy assignment
-    ~ArrayList();								// Delete
+    ArrayList();                                // Default ctor
+    ArrayList(const ArrayList<T>& copy);        // Copy
+    ArrayList<T>& operator=(ArrayList<T> obj);  // Copy assignment
+    ~ArrayList();                               // Delete
 
     void insertAtStart(T value);
     void insertAtEnd(T value);
@@ -87,7 +87,7 @@ inline void ArrayList<T>::insertAtStart(T value)
 {
     if (m_size == m_capacity)
     {
-        m_capacity *= GROWTH_FACTOR;
+        m_capacity = size_t(m_capacity * GROWTH_FACTOR);
 
         T* old = m_array;
         m_array = new T[m_capacity];
@@ -113,7 +113,7 @@ inline void ArrayList<T>::insertAtEnd(T value)
 {
     if (m_size == m_capacity)
     {
-        m_capacity *= GROWTH_FACTOR;
+        m_capacity = size_t(m_capacity * GROWTH_FACTOR);
 
         T* old = m_array;
         m_array = new T[m_capacity];
@@ -148,7 +148,7 @@ inline void ArrayList<T>::insertBeforeIndex(size_t index, T value)
 
     if (m_size == m_capacity)
     {
-        m_capacity *= GROWTH_FACTOR;
+        m_capacity = size_t(m_capacity * GROWTH_FACTOR);
 
         T* old = m_array;
         m_array = new T[m_capacity];
