@@ -97,5 +97,5 @@ inline size_t Stack<T>::size()
 template<typename T>
 inline void Stack<T>::print()
 {
-    ArrayList<T>::print(*this);
+    ArrayList<T>::print();
 }
