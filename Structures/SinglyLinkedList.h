@@ -4,7 +4,7 @@
 #include <iostream>
 
 template<typename T>
-class LinkedList
+class SinglyLinkedList
 {
 protected:
     struct Node
@@ -27,10 +27,10 @@ protected:
     void _printReversed(Node* node);
 
 public:
-    LinkedList();
-    LinkedList(const LinkedList<T>& copy);
-    LinkedList<T>& operator=(LinkedList<T>& obj);
-    ~LinkedList();
+    SinglyLinkedList();
+    SinglyLinkedList(const SinglyLinkedList<T>& copy);
+    SinglyLinkedList<T>& operator=(SinglyLinkedList<T>& obj);
+    ~SinglyLinkedList();
 
 
     void insertAtStart(T value);
@@ -55,13 +55,13 @@ public:
     bool isEmpty() const;
     void print();
     void printReversed();
-    static void swap(LinkedList<T>& obj1, LinkedList<T>& obj2);
+    static void swap(SinglyLinkedList<T>& obj1, SinglyLinkedList<T>& obj2);
 
     T operator[](size_t index) const;
 };
 
 template<typename T>
-inline LinkedList<T>::Node* LinkedList<T>::getNodeByIndex(size_t index) const
+inline SinglyLinkedList<T>::Node* SinglyLinkedList<T>::getNodeByIndex(size_t index) const
 {
     if (index >= m_size)
     {
@@ -78,7 +78,7 @@ inline LinkedList<T>::Node* LinkedList<T>::getNodeByIndex(size_t index) const
 }
 
 template<typename T>
-inline LinkedList<T>::Node* LinkedList<T>::getNodeByKey(T key) const
+inline SinglyLinkedList<T>::Node* SinglyLinkedList<T>::getNodeByKey(T key) const
 {
     Node* temp = m_head;
     for (size_t i = 0; i < m_size; ++i)
@@ -97,7 +97,7 @@ inline LinkedList<T>::Node* LinkedList<T>::getNodeByKey(T key) const
 }
 
 template<typename T>
-inline void LinkedList<T>::insertAfterNode(Node* node, T value)
+inline void SinglyLinkedList<T>::insertAfterNode(Node* node, T value)
 {
     Node* new_node = new Node;
     new_node->data = value;
@@ -107,7 +107,7 @@ inline void LinkedList<T>::insertAfterNode(Node* node, T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::removeNextNode(Node* node)
+inline void SinglyLinkedList<T>::removeNextNode(Node* node)
 {
     Node* dead = node->next;
     node->next = dead->next;
@@ -116,13 +116,13 @@ inline void LinkedList<T>::removeNextNode(Node* node)
 }
 
 template<typename T>
-inline LinkedList<T>::LinkedList()
+inline SinglyLinkedList<T>::SinglyLinkedList()
     : m_head(nullptr), m_tail(nullptr), m_size(0)
 {
 }
 
 template<typename T>
-inline LinkedList<T>::LinkedList(const LinkedList<T>& copy)
+inline SinglyLinkedList<T>::SinglyLinkedList(const SinglyLinkedList<T>& copy)
 {
     Node* temp = copy.m_head;
     for (size_t i = 0; i < copy.m_size; ++i)
@@ -133,14 +133,14 @@ inline LinkedList<T>::LinkedList(const LinkedList<T>& copy)
 }
 
 template<typename T>
-inline LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>& obj)
+inline SinglyLinkedList<T>& SinglyLinkedList<T>::operator=(SinglyLinkedList<T>& obj)
 {
     swap(*this, obj);
     return *this;
 }
 
 template<typename T>
-inline LinkedList<T>::~LinkedList()
+inline SinglyLinkedList<T>::~SinglyLinkedList()
 {
     if (!m_head)
     {
@@ -158,7 +158,7 @@ inline LinkedList<T>::~LinkedList()
 }
 
 template<typename T>
-inline void LinkedList<T>::insertAtStart(T value)
+inline void SinglyLinkedList<T>::insertAtStart(T value)
 {
     Node* new_node = new Node;
     new_node->data = value;
@@ -173,7 +173,7 @@ inline void LinkedList<T>::insertAtStart(T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::insertAtEnd(T value)
+inline void SinglyLinkedList<T>::insertAtEnd(T value)
 {
     Node* new_node = new Node;
     new_node->data = value;
@@ -192,7 +192,7 @@ inline void LinkedList<T>::insertAtEnd(T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::insertBeforeIndex(size_t index, T value)
+inline void SinglyLinkedList<T>::insertBeforeIndex(size_t index, T value)
 {
     if (index == 0)
     {
@@ -205,7 +205,7 @@ inline void LinkedList<T>::insertBeforeIndex(size_t index, T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::insertAfterIndex(size_t index, T value)
+inline void SinglyLinkedList<T>::insertAfterIndex(size_t index, T value)
 {
     if (index == m_size - 1)
     {
@@ -218,7 +218,7 @@ inline void LinkedList<T>::insertAfterIndex(size_t index, T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::insertBeforeKey(T key, T value)
+inline void SinglyLinkedList<T>::insertBeforeKey(T key, T value)
 {
     if (m_head->data == key)
     {
@@ -242,7 +242,7 @@ inline void LinkedList<T>::insertBeforeKey(T key, T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::insertAfterKey(T key, T value)
+inline void SinglyLinkedList<T>::insertAfterKey(T key, T value)
 {
     if (m_tail->data == key)
     {
@@ -266,14 +266,14 @@ inline void LinkedList<T>::insertAfterKey(T key, T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::updateIndex(size_t index, T value)
+inline void SinglyLinkedList<T>::updateIndex(size_t index, T value)
 {
     Node* temp = getNodeByIndex(index);
     temp->data = value;
 }
 
 template<typename T>
-inline void LinkedList<T>::updateKey(T key, T value)
+inline void SinglyLinkedList<T>::updateKey(T key, T value)
 {
     Node* temp = getNodeByKey(key);
     if (temp != nullptr)
@@ -281,12 +281,15 @@ inline void LinkedList<T>::updateKey(T key, T value)
 }
 
 template<typename T>
-inline void LinkedList<T>::removeFirst()
+inline void SinglyLinkedList<T>::removeFirst()
 {
     if (isEmpty())
     {
         return;
     }
+
+    if (m_head == m_tail)
+        m_tail = nullptr;
 
     Node* temp = m_head;
     m_head = m_head->next;
@@ -295,22 +298,25 @@ inline void LinkedList<T>::removeFirst()
 }
 
 template<typename T>
-inline void LinkedList<T>::removeLast()
+inline void SinglyLinkedList<T>::removeLast()
 {
     if (isEmpty())
     {
         return;
     }
 
+    if (m_head == m_tail)
+        m_head = nullptr;
+
     Node* second_last = getNodeByIndex(m_size - 1);
     delete second_last->next;
+    second_last->next = nullptr;
     m_tail = second_last;
-    m_tail->next = nullptr;
     --m_size;
 }
 
 template<typename T>
-inline void LinkedList<T>::removeAtIndex(size_t index)
+inline void SinglyLinkedList<T>::removeAtIndex(size_t index)
 {
     if (index == 0)
     {
@@ -328,7 +334,7 @@ inline void LinkedList<T>::removeAtIndex(size_t index)
 }
 
 template<typename T>
-inline void LinkedList<T>::removeAtKey(T key)
+inline void SinglyLinkedList<T>::removeAtKey(T key)
 {
     if (m_head->data == key)
     {
@@ -358,14 +364,14 @@ inline void LinkedList<T>::removeAtKey(T key)
 }
 
 template<typename T>
-inline void LinkedList<T>::clear()
+inline void SinglyLinkedList<T>::clear()
 {
-    LinkedList<T> empty;
+    SinglyLinkedList<T> empty;
     swap(*this, empty);
 } // Empty will be destroyed here which will clean up the memory
 
 template<typename T>
-inline void LinkedList<T>::swap(size_t l_index, size_t r_index)
+inline void SinglyLinkedList<T>::swap(size_t l_index, size_t r_index)
 {
     Node* l_prev, * l, * r_prev, * r;
 
@@ -394,7 +400,7 @@ inline void LinkedList<T>::swap(size_t l_index, size_t r_index)
 }
 
 template<typename T>
-inline size_t LinkedList<T>::find(T key) const
+inline size_t SinglyLinkedList<T>::find(T key) const
 {
     Node* temp = m_head;
     for (size_t i = 0; i < m_size; ++i)
@@ -413,19 +419,19 @@ inline size_t LinkedList<T>::find(T key) const
 }
 
 template<typename T>
-inline size_t LinkedList<T>::size() const
+inline size_t SinglyLinkedList<T>::size() const
 {
     return m_size;
 }
 
 template<typename T>
-bool LinkedList<T>::isEmpty() const
+bool SinglyLinkedList<T>::isEmpty() const
 {
     return m_head == nullptr;
 }
 
 template<typename T>
-inline void LinkedList<T>::print()
+inline void SinglyLinkedList<T>::print()
 {
     if (isEmpty())
         return;
@@ -439,7 +445,7 @@ inline void LinkedList<T>::print()
 }
 
 template<typename T>
-inline void LinkedList<T>::_printReversed(Node* node)
+inline void SinglyLinkedList<T>::_printReversed(Node* node)
 {
     if (node == nullptr)
         return;
@@ -449,13 +455,13 @@ inline void LinkedList<T>::_printReversed(Node* node)
 }
 
 template<typename T>
-inline void LinkedList<T>::printReversed()
+inline void SinglyLinkedList<T>::printReversed()
 {
     _printReversed(m_head);
 }
 
 template<typename T>
-inline void LinkedList<T>::swap(LinkedList<T>& obj1, LinkedList<T>& obj2)
+inline void SinglyLinkedList<T>::swap(SinglyLinkedList<T>& obj1, SinglyLinkedList<T>& obj2)
 {
     using std::swap;
     swap(obj1.m_head, obj2.m_head);
@@ -464,7 +470,7 @@ inline void LinkedList<T>::swap(LinkedList<T>& obj1, LinkedList<T>& obj2)
 }
 
 template<typename T>
-inline T LinkedList<T>::operator[](size_t index) const
+inline T SinglyLinkedList<T>::operator[](size_t index) const
 {
     return getNodeByIndex(index)->data;
 }
