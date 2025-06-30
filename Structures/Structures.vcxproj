@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ArrayList.h" />
+    <ClInclude Include="ArrayQueue.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
