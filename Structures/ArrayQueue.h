@@ -128,7 +128,7 @@ inline bool ArrayQueue<T>::isEmpty() const
 template<typename T>
 inline void ArrayQueue<T>::print()
 {
-    for (size_t i = 0, j = m_front; i < m_size; ++i)
+    for (size_t i = 0, j = m_front; i < m_size; ++i, ++j)
     {
         if (j == m_capacity)
             j = 0;
